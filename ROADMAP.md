@@ -1,6 +1,6 @@
 # Roadmap
 
-## Setup project
+## Setup project (100%)
 
 - Add dev tools
   - Prettier
@@ -10,7 +10,7 @@
   - Commit automations (husky,lint-stage)
   - Scripts
 
-## Components
+## Components (20%)
 
 - QuestionComponent
 
@@ -23,7 +23,7 @@
 - QuestionsMap
   Map<QuestionType, QuestionComponent>
 
-- Games provider as global state
+- Games provider as global state (50%)
 
   - <GameProvider />
   - nextQuestion
@@ -39,6 +39,10 @@
   - correctAnswer
 
 - Final Score page
+
+## Fetch data (100%)
+
+- questions.json
 
 ## Tests
 
