@@ -9,10 +9,12 @@ export type Question = {
   incorrect_answers?: string[];
 };
 
+export type QuestionWithAnswer = Question & { userAnswer?: string };
+
 export type Game = {
   questionsPull: Question[];
-  questions: Question[];
-  setQuestions: React.Dispatch<React.SetStateAction<Question[]>>;
+  questions: QuestionWithAnswer[];
+  setQuestions: React.Dispatch<React.SetStateAction<QuestionWithAnswer[]>>;
   currentQuestion: number;
   setCurrentQuestion: (number: number) => void;
   isEnd: boolean;

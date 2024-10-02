@@ -17,6 +17,9 @@
   - <MultipleQuestion />
   - <BooleanQuestion />
   - <TextQuestion />
+  - <QuestionContainer> (has header, counter and button?) add back button?
+  - <QuestionCounter>
+  - How to show total of questions?
 
 - QuestionType 'multiple' | 'boolean' | 'text'
 
@@ -48,3 +51,7 @@
 
 - Vitest
 - React testing library
+
+## State persistence
+
+- Local Storage?
