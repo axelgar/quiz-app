@@ -1,4 +1,4 @@
-import { useUpdateQuestion } from "../hooks/useUpdateQuestion";
+import { useUpdateQuestion } from "../hooks";
 import { Question } from "../types";
 import { Radio, RadioGroup } from "@headlessui/react";
 import { QuestionContainer } from "./QuestionContainer";
@@ -10,10 +10,11 @@ type Props = {
 const options = ["True", "False"];
 
 export const BooleanQuestion = (props: Props) => {
+  const { question } = props;
   const [value, setValue] = useUpdateQuestion();
 
   return (
-    <QuestionContainer question={props.question.question}>
+    <QuestionContainer question={question.question}>
       <fieldset aria-label="Choose an option" className="flex flex-col items-center">
         <RadioGroup id={value} value={value || ""} onChange={setValue} className="flex mt-2 gap-3">
           {options.map((option) => (

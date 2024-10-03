@@ -1,8 +1,12 @@
-import { Button } from "../atoms";
-import { useGameProvider } from "../providers/GameProvider";
+import { useRef } from "react";
+import { Button, KeyIcon } from "../atoms";
+import { useGameProvider } from "../providers";
+import { useFocusOnMount } from "../hooks";
 
 export const EndScreen = () => {
-  const { resetGame, questions } = useGameProvider();
+  const { reset: resetGame, questions } = useGameProvider();
+  const ref = useRef<HTMLButtonElement>(null);
+  useFocusOnMount(ref);
 
   const correctAnswers = questions.filter(
     ({ userAnswer, correct_answer }) => userAnswer?.toLowerCase() === correct_answer.toLowerCase(),
@@ -35,7 +39,9 @@ export const EndScreen = () => {
       </div>
 
       <div className="mt-10 flex items-center justify-center gap-x-6">
-        <Button onClick={resetGame}>RESTART ↺</Button>
+        <Button onClick={resetGame} ref={ref}>
+          RESTART <KeyIcon variant="dark">ESC</KeyIcon>
+        </Button>
       </div>
     </>
   );

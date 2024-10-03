@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { useGameProvider } from "../providers/GameProvider";
+import { useGameProvider } from "../providers";
 import { Button } from "../atoms";
-import { twMerge } from "tailwind-merge";
+import { Pager } from "./Pager";
 
 type Props = {
   question: string;
@@ -9,26 +9,26 @@ type Props = {
 };
 
 export const QuestionContainer = (props: Props) => {
-  const { currentIndex, setCurrentIndex, questions, setStatus } = useGameProvider();
+  const { questionsIndex, increaseQuestionsIndex, decreaseQuestionsIndex, questions, idle, end } = useGameProvider();
 
   const handleNextClick = () => {
-    if (currentIndex + 1 === questions.length) {
-      return setStatus("end");
+    if (questionsIndex + 1 === questions.length) {
+      return end();
     }
-    setCurrentIndex(currentIndex + 1);
+    increaseQuestionsIndex();
   };
 
   const handlePreviousClick = () => {
-    if (currentIndex - 1 < 0) {
-      return setStatus("idle");
+    if (questionsIndex - 1 < 0) {
+      return idle();
     }
-    setCurrentIndex(currentIndex - 1);
+    decreaseQuestionsIndex();
   };
 
   return (
     <>
       <header className="absolute top-5 right-8">
-        <p className="text-white text-end rounded-full py-2 px-4 border-2 border-white">{currentIndex + 1}</p>
+        <p className="text-white text-end rounded-full py-2 px-4 border-2 border-white">{questionsIndex + 1}</p>
       </header>
       <h1 className="mx-auto max-w-2xl text-2xl font-bold tracking-tight text-white sm:text-3xl">{props.question}</h1>
 
@@ -40,26 +40,10 @@ export const QuestionContainer = (props: Props) => {
             ← Previous
           </Button>
           <Button onClick={handleNextClick} fullWidth>
-            Next →
+            {questionsIndex === questions.length - 1 ? "Finish" : "Next"} →
           </Button>
         </div>
-
-        <div className="flex gap-4 justify-center mt-5">
-          {questions.map((question, index) => {
-            return (
-              <button
-                aria-label={`Select sepecific question: ${index}`}
-                onClick={() => setCurrentIndex(index)}
-                key={`index-${index}`}
-                className={twMerge(
-                  `h-3 w-3 rounded-full bg-white border-2 border-transparent`,
-                  question.userAnswer && "bg-green-500",
-                  index === currentIndex && "border-orange-400",
-                )}
-              />
-            );
-          })}
-        </div>
+        <Pager />
       </footer>
     </>
   );

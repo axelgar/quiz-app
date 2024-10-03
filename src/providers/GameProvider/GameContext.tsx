@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Game } from "../../types";
+import { Game } from "./types";
 
 export const GameContext = createContext<Game | undefined>(undefined);
 

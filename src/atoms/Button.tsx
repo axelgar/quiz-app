@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
@@ -8,11 +8,12 @@ type Props = {
   fullWidth?: boolean;
 };
 
-export const Button = (props: Props) => {
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button(props, ref) {
   const { onClick, children, disabled, fullWidth } = props;
 
   return (
     <button
+      ref={ref}
       onClick={onClick}
       disabled={disabled}
       className={twMerge(
@@ -24,4 +25,4 @@ export const Button = (props: Props) => {
       {children}
     </button>
   );
-};
+});

@@ -1,8 +1,12 @@
-import { Button } from "../atoms";
-import { useGameProvider } from "../providers/GameProvider";
+import { useRef } from "react";
+import { Button, KeyIcon } from "../atoms";
+import { useGameProvider } from "../providers";
+import { useFocusOnMount } from "../hooks";
 
 export const WelcomeScreen = () => {
-  const { setStatus } = useGameProvider();
+  const { start } = useGameProvider();
+  const ref = useRef<HTMLButtonElement>(null);
+  useFocusOnMount(ref);
 
   return (
     <>
@@ -13,8 +17,23 @@ export const WelcomeScreen = () => {
         In this game you will get a random set of questions to test your general knowledge. There are three different
         type of questions, multiple choice, yes or no, and free text.
       </p>
+
+      <ul className="text-white flex flex-col gap-2 mx-auto">
+        <li className="flex items-center gap-2">
+          <KeyIcon>ESC</KeyIcon> Restart quiz
+        </li>
+        <li className="flex items-center gap-2">
+          <KeyIcon>→</KeyIcon> Next question
+        </li>
+        <li className="flex items-center gap-2">
+          <KeyIcon>←</KeyIcon> Previous question
+        </li>
+      </ul>
+
       <div className="mt-10 flex items-center justify-center gap-x-6">
-        <Button onClick={() => setStatus("start")}>START →</Button>
+        <Button ref={ref} onClick={start}>
+          START →
+        </Button>
       </div>
     </>
   );

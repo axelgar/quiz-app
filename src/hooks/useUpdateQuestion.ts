@@ -1,16 +1,16 @@
 import { useCallback } from "react";
-import { useGameProvider } from "../providers/GameProvider";
+import { useGameProvider } from "../providers";
 
 export const useUpdateQuestion: () => [string | undefined, (userAnswer: string) => void] = () => {
-  const { questions, currentIndex, setQuestions } = useGameProvider();
+  const { questions, questionsIndex, setQuestions } = useGameProvider();
 
   const updateAnswer = useCallback(
     (userAnswer: string) => {
-      questions[currentIndex] = { ...questions[currentIndex], userAnswer };
+      questions[questionsIndex] = { ...questions[questionsIndex], userAnswer };
       setQuestions([...questions]);
     },
-    [currentIndex, setQuestions],
+    [questionsIndex, questions, setQuestions],
   );
 
-  return [questions[currentIndex].userAnswer, updateAnswer];
+  return [questions[questionsIndex].userAnswer, updateAnswer];
 };

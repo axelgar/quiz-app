@@ -1,28 +1,44 @@
-import { GameContext } from "./GameContext";
-import data from "../../questions.json";
-import { shuffleArray } from "../../utils";
 import { ReactNode, useState } from "react";
-import { GameStatus } from "../../types";
+import { GameContext } from "./GameContext";
+import { shuffleArray } from "../../utils";
+import { GameStatus } from "./types";
+import data from "../../questions.json";
 
 type Props = { children: ReactNode };
 
 export const GameProvider = (props: Props) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [questionsIndex, setQuestionsIndex] = useState(0);
   const [questions, setQuestions] = useState(shuffleArray(data).slice(0, 5));
   const [status, setStatus] = useState<GameStatus>("idle");
 
-  const onSetCurrentIndex = (number: number) => {
-    if (currentIndex > questions.length - 1 || currentIndex < 0) {
-      return;
-    }
-
-    setCurrentIndex(number);
+  const increaseQuestionsIndex = () => {
+    setQuestionsIndex((prev) => Math.min(prev + 1, questions.length - 1));
   };
 
-  const resetGame = () => {
+  const decreaseQuestionsIndex = () => {
+    setQuestionsIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const reset = () => {
+    console.info("reset()");
     setStatus("idle");
-    setCurrentIndex(0);
+    setQuestionsIndex(0);
     setQuestions([...shuffleArray(data).slice(0, 5)]);
+  };
+
+  const idle = () => {
+    console.info("idle()");
+    setStatus("idle");
+  };
+
+  const start = () => {
+    console.info("start()");
+    setStatus("start");
+  };
+
+  const end = () => {
+    console.info("end()");
+    setStatus("end");
   };
 
   return (
@@ -32,10 +48,14 @@ export const GameProvider = (props: Props) => {
         questions,
         setQuestions,
         status,
-        setStatus,
-        currentIndex,
-        setCurrentIndex: onSetCurrentIndex,
-        resetGame,
+        reset,
+        idle,
+        start,
+        end,
+        questionsIndex,
+        increaseQuestionsIndex,
+        decreaseQuestionsIndex,
+        setQuestionsIndex,
       }}
     />
   );

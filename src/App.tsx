@@ -1,19 +1,27 @@
-import { Show } from "./atoms/Show";
+import { useEffect } from "react";
+import { Show } from "./atoms";
 import { WelcomeScreen, EndScreen } from "./components";
-import { useGameProvider } from "./providers/GameProvider";
-import { getQuestionComponent } from "./utils/get-question-component";
+import { useGameProvider } from "./providers";
+import { getQuestionComponent } from "./utils";
+import { useCreateGlobalKeyHandler } from "./hooks";
 
 export default function App() {
-  const { status, currentIndex, questions } = useGameProvider();
+  const { status, questionsIndex, questions } = useGameProvider();
+  const globalKeyHandler = useCreateGlobalKeyHandler();
+
+  useEffect(() => {
+    document.addEventListener("keydown", globalKeyHandler);
+    return () => document.removeEventListener("keydown", globalKeyHandler);
+  }, [globalKeyHandler]);
 
   return (
     <div className="bg-white h-full">
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8 h-full">
-        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16 min-h-[600px] flex flex-col justify-between gap-4 h-full">
+      <div className="mx-auto max-w-7xl py-0 sm:px-6 sm:py-32 lg:px-8 h-full">
+        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16 sm:min-h-[600px] flex flex-col justify-between gap-4 h-full">
           <Show when={status === "idle"}>
             <WelcomeScreen />
           </Show>
-          <Show when={status === "start"}>{getQuestionComponent(questions[currentIndex])}</Show>
+          <Show when={status === "start"}>{getQuestionComponent(questions[questionsIndex])}</Show>
           <Show when={status === "end"}>
             <EndScreen />
           </Show>
