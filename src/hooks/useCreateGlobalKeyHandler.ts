@@ -1,6 +1,11 @@
 import { useCallback } from "react";
-import { KEYS } from "../constants";
 import { useGameProvider } from "../providers";
+
+export const KEYS = {
+  Escape: "Escape",
+  ArrowLeft: "ArrowLeft",
+  ArrowRight: "ArrowRight",
+};
 
 export const useCreateGlobalKeyHandler = () => {
   const { status, questionsIndex, decreaseQuestionsIndex, increaseQuestionsIndex, questions, reset } =
