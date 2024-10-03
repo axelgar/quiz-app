@@ -10,30 +10,30 @@
   - Commit automations (husky,lint-stage)
   - Scripts
 
-## Components (20%)
+## Components (60%)
 
 - QuestionComponent
 
   - <MultipleQuestion />
   - <BooleanQuestion />
   - <TextQuestion />
-  - <QuestionContainer> (has header, counter and button?) add back button?
+  - <QuestionContainer>
   - <QuestionCounter>
-  - How to show total of questions?
+  - <Pager>
 
 - QuestionType 'multiple' | 'boolean' | 'text'
 
 - QuestionsMap
   Map<QuestionType, QuestionComponent>
 
-- Games provider as global state (50%)
+- Games provider as global state (80%)
 
   - <GameProvider />
   - nextQuestion
   - previousQuestion
   - resetGame
   - currentQuestion
-  - isEnd
+  - isEnd <= Use status at the end, they need to be exclusive
 
 - Question class
 
