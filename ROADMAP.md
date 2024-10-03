@@ -10,11 +10,10 @@
   - Commit automations (husky,lint-stage)
   - Scripts
 
-## Components (70%)
+## Components (100%)
 
 - QuestionComponent
-
-- <MultipleQuestion />
+  <MultipleQuestion />
 - <BooleanQuestion />
 - <TextQuestion />
 - <QuestionContainer>
@@ -52,18 +51,12 @@
 - Create a hook to add a global event handler to manage basic actions
 - Focus trap?
 
-## Readme
+## Readme (100%)
 
 - Add scripts description
 - How to guide to run the project
 
-## Tests
+## Tests (100%)
 
 - Vitest
 - React testing library
-
-## State persistence
-
-- Local Storage?
-
-## Notes
