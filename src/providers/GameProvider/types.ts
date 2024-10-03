@@ -8,7 +8,6 @@ export type Game = {
   questionsIndex: number;
   status: GameStatus;
   reset: () => void;
-  idle: () => void;
   start: () => void;
   end: () => void;
   increaseQuestionsIndex: () => void;

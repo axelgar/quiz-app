@@ -26,11 +26,6 @@ export const GameProvider = (props: Props) => {
     setQuestions([...shuffleArray(data).slice(0, 5)]);
   };
 
-  const idle = () => {
-    console.info("idle()");
-    setStatus("idle");
-  };
-
   const start = () => {
     console.info("start()");
     setStatus("start");
@@ -49,7 +44,6 @@ export const GameProvider = (props: Props) => {
         setQuestions,
         status,
         reset,
-        idle,
         start,
         end,
         questionsIndex,

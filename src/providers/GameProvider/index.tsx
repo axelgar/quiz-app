@@ -1,2 +1,2 @@
-export * from "./GameContext";
+export * from "./useGameProvider";
 export * from "./GameProvider";

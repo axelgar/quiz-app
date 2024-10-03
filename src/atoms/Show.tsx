@@ -5,7 +5,12 @@ type Props = {
   children: ReactNode;
 };
 
-export const Show = ({ when, children }: Props) => {
-  if (when) return children;
+export const Show = (props: Props) => {
+  const { when, children } = props;
+
+  if (when) {
+    return children;
+  }
+
   return <></>;
 };

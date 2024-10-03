@@ -3,7 +3,7 @@ import { KEYS } from "../constants";
 import { useGameProvider } from "../providers";
 
 export const useCreateGlobalKeyHandler = () => {
-  const { status, idle, questionsIndex, decreaseQuestionsIndex, increaseQuestionsIndex, start, questions, end, reset } =
+  const { status, questionsIndex, decreaseQuestionsIndex, increaseQuestionsIndex, questions, reset } =
     useGameProvider();
 
   const eventHandler = useCallback(
@@ -19,7 +19,7 @@ export const useCreateGlobalKeyHandler = () => {
           }
 
           if (questionsIndex === 0) {
-            return idle();
+            return;
           }
 
           decreaseQuestionsIndex();
@@ -27,18 +27,18 @@ export const useCreateGlobalKeyHandler = () => {
 
         case KEYS.ArrowRight:
           if (status === "idle") {
-            return start();
+            return;
           }
 
           if (questionsIndex === questions.length - 1) {
-            return end();
+            return;
           }
 
           increaseQuestionsIndex();
           break;
       }
     },
-    [decreaseQuestionsIndex, end, idle, increaseQuestionsIndex, questions.length, questionsIndex, start, status, reset],
+    [decreaseQuestionsIndex, increaseQuestionsIndex, questions.length, questionsIndex, status, reset],
   );
 
   return eventHandler;

@@ -1,6 +1,6 @@
+import { Radio, RadioGroup } from "@headlessui/react";
 import { useUpdateQuestion } from "../hooks";
 import { Question } from "../types";
-import { Radio, RadioGroup } from "@headlessui/react";
 import { QuestionContainer } from "./QuestionContainer";
 
 type Props = {

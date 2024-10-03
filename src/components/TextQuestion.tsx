@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from "react";
+import { ChangeEvent } from "react";
 import { useFocusOnMount, useUpdateQuestion } from "../hooks";
 import { useGameProvider } from "../providers";
 import { Question } from "../types";
@@ -9,17 +9,17 @@ type Props = {
 };
 
 export const TextQuestion = (props: Props) => {
+  const { question } = props;
   const { questionsIndex } = useGameProvider();
   const [value, setValue] = useUpdateQuestion();
-  const ref = useRef<HTMLInputElement>(null);
-  useFocusOnMount(ref);
+  const ref = useFocusOnMount<HTMLInputElement>();
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
   return (
-    <QuestionContainer question={props.question.question}>
+    <QuestionContainer question={question.question}>
       <form className="flex flex-col items-center">
         <div>
           <label

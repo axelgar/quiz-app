@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useFocusOnMount, useUpdateQuestion } from "../hooks";
 import { QuestionMultiple } from "../types";
 import { QuestionContainer } from "./QuestionContainer";
@@ -8,14 +7,14 @@ type Props = {
 };
 
 export const MultipleQuestion = (props: Props) => {
+  const { question } = props;
   const [value, setValue] = useUpdateQuestion();
-  const ref = useRef<HTMLLabelElement>(null);
-  useFocusOnMount(ref);
+  const ref = useFocusOnMount<HTMLLabelElement>();
 
-  const options = [...props.question.incorrect_answers, props.question.correct_answer];
+  const options = [...question.incorrect_answers, question.correct_answer];
 
   return (
-    <QuestionContainer question={props.question.question}>
+    <QuestionContainer question={question.question}>
       <fieldset className="flex flex-col items-center">
         <div className="space-y-6">
           {options.map((option, index) => (

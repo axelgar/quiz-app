@@ -16,8 +16,8 @@ export default function App() {
 
   return (
     <div className="bg-white h-full">
-      <div className="mx-auto max-w-7xl py-0 sm:px-6 sm:py-32 lg:px-8 h-full">
-        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16 sm:min-h-[600px] flex flex-col justify-between gap-4 h-full">
+      <div className="mx-auto max-w-7xl py-0 h-full sm:min-h-full sm:h-auto flex items-center justify-center">
+        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center w-full sm:w-4/5 shadow-2xl sm:rounded-3xl sm:px-16 sm:min-h-[600px] flex flex-col justify-between gap-4 h-full">
           <Show when={status === "idle"}>
             <WelcomeScreen />
           </Show>

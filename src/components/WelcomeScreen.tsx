@@ -1,12 +1,10 @@
-import { useRef } from "react";
 import { Button, KeyIcon } from "../atoms";
 import { useGameProvider } from "../providers";
 import { useFocusOnMount } from "../hooks";
 
 export const WelcomeScreen = () => {
   const { start } = useGameProvider();
-  const ref = useRef<HTMLButtonElement>(null);
-  useFocusOnMount(ref);
+  const ref = useFocusOnMount<HTMLButtonElement>();
 
   return (
     <>
@@ -18,7 +16,7 @@ export const WelcomeScreen = () => {
         type of questions, multiple choice, yes or no, and free text.
       </p>
 
-      <ul className="text-white flex flex-col gap-2 mx-auto">
+      <ul className="text-white flex flex-col gap-2 mx-auto mt-10">
         <li className="flex items-center gap-2">
           <KeyIcon>ESC</KeyIcon> Restart quiz
         </li>
