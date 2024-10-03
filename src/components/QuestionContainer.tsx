@@ -33,12 +33,12 @@ export const QuestionContainer = (props: Props) => {
       {children}
 
       <footer>
-        <div className="flex items-center justify-center gap-x-6 sm:w-60 mx-auto ">
-          <Button onClick={handlePreviousClick} fullWidth disabled={questionsIndex - 1 < 0}>
-            ← Previous
-          </Button>
+        <div className="flex items-center justify-center gap-x-6 sm:w-60 mx-auto flex-row-reverse">
           <Button onClick={handleNextClick} fullWidth>
             {questionsIndex === questions.length - 1 ? "Finish" : "Next"} →
+          </Button>
+          <Button onClick={handlePreviousClick} fullWidth disabled={questionsIndex - 1 < 0}>
+            ← Previous
           </Button>
         </div>
         <Pager />
