@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 import { GameContext } from "./GameContext";
 import { shuffleArray } from "../../utils";
 import { GameStatus } from "./types";
-import data from "../../questions.json";
+import data from "./questions.json";
 
 type Props = { children: ReactNode };
 

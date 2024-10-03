@@ -22,20 +22,23 @@ This is my solution for the Cint UI home assessment test.
 
 ## Solution
 
-I tried to implement first a very simple solution to have the essential requirements and then build on top with features I think can be useful for the experience and some refactors along the way. I tried to document my thoughts/ideas in the [ROADMPA.md](./ROADMAP.md) file, also the git history might be useful.
+I tried to implement first a very simple solution to have the essential requirements and then build on top with features I think can be useful for the experience and some refactors along the way. I've been trying to do it as I would approach any project so I tried to document my thoughts/ideas in the [ROADMAP.md](./ROADMAP.md) file to help me along the way, also the git history might be useful.
 
 ## Scripts
 
-`npm run lint`: Runs ESlint and check there are no linting errors.
+`npm run lint`: Runs ESlint and checks that there are no linting errors
+
 `npm run test`: Script to run the tests
+
 `npm run format`: Script to fix all the code formatting using Prettier, it is run before every commit.
+
 `npm run prepare`: Script to run the first time you clone the repository to prepare husky
 
 ## Stack used
 
-I decided to go with a simple SPA with not framework (like Next.js) since it is a very simple application. And I decided to use Vite as it is the build tool recommended by the React team.
+I decided to go with a simple SPA with no framework (like Next.js) since it is a very simple application. And I decided to use Vite as it is the build tool recommended by the React team.
 
-For the styles I decided to go with Talwind since I am very used to it and it allows me to go quick for basic design layouts.
+For the styles I decided to go with Tailwind since I am very used to it and it allows me to go quick for basic design layouts.
 
 #### Tooling/DX
 
@@ -57,7 +60,8 @@ For the styles I decided to go with Talwind since I am very used to it and it al
 
 ## Code/structure standards used
 
-- Props destructuring always inside the component (when need it) and not in the params
+- Props destructuring always inside the component (when needed) and not in the params
+
   ```tsx
       const ComponentName = (props: Props) => {
           const {children, className, ...} = props
@@ -65,20 +69,21 @@ For the styles I decided to go with Talwind since I am very used to it and it al
       }
   ```
 
-```
+- Use always `index.ts` files to export only the public or code that needs to be used outside. If there is any import with a nested path it's a bad sign:
 
-- Use always `index.ts` files to export only the public or code that needs to be used outside. If there is any import with a nested path is a bad sign:
   - `import {ComponentName} from ../../components/ComponentName` ❌
   - `import {ComponentName} from ../../components` ✅
+
+- Every component has to be inside a folder with required code like constants or utils and its tests.
 
 ## Possible next steps
 
 - Show difficulty
 - Keep track of questions already used and not repeat
-- Evaluate if refactor to use pagination
-- Add persistent state
-- Add ranking
-- Add confirmation modal if user is going to finish with not answered questions
-- Add e2e tests
-- Improve on eslint rules / warn aboud the code standars
-```
+- Evaluate if refactor to use pagination instead of one page
+- Add persistent state (allowing rankings with users and nicknames)
+- Add e2e tests (Playright?)
+- Improve on ESlint rules / warn about the code standards
+- Improve feedback on UI
+  - Add confirmation modal if user is going to finish with not answered questions
+  - Make pager buttons have hover visual feedback

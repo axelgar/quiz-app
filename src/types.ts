@@ -1,5 +1,3 @@
-export type QuestionType = "boolean" | "multiple" | "text";
-
 export type Question = {
   category: string;
   type: string;
