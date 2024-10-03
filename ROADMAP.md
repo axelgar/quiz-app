@@ -10,42 +10,47 @@
   - Commit automations (husky,lint-stage)
   - Scripts
 
-## Components (60%)
+## Components (70%)
 
 - QuestionComponent
 
-  - <MultipleQuestion />
-  - <BooleanQuestion />
-  - <TextQuestion />
-  - <QuestionContainer>
-  - <QuestionCounter>
-  - <Pager>
+- <MultipleQuestion />
+- <BooleanQuestion />
+- <TextQuestion />
+- <QuestionContainer>
+- <QuestionCounter>
+- <Pager>
 
-- QuestionType 'multiple' | 'boolean' | 'text'
+  - QuestionType 'multiple' | 'boolean' | 'text'
 
 - QuestionsMap
   Map<QuestionType, QuestionComponent>
 
 - Games provider as global state (80%)
 
-  - <GameProvider />
-  - nextQuestion
-  - previousQuestion
-  - resetGame
-  - currentQuestion
-  - isEnd <= Use status at the end, they need to be exclusive
+- <GameProvider />
+- nextQuestion
+- previousQuestion
+- resetGame
+- currentQuestion
+- isEnd <= Use status at the end, they need to be exclusive
 
 - Question class
 
-  - type
-  - userAnswer
-  - correctAnswer
+- type
+- userAnswer
+- correctAnswer
 
 - Final Score page
 
 ## Fetch data (100%)
 
 - questions.json
+
+## Key Handler (100%)
+
+- Create a hook to add a global event handler to manage basic actions
+- Focus trap?
 
 ## Tests
 
@@ -57,6 +62,3 @@
 - Local Storage?
 
 ## Notes
-
-- Focus trap?
-- Key handlers
