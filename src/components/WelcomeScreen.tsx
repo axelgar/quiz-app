@@ -1,8 +1,8 @@
 import { Button } from "../atoms";
-import { useGameProvider } from "../providers/GameProvider/GameContext";
+import { useGameProvider } from "../providers/GameProvider";
 
 export const WelcomeScreen = () => {
-  const { setIsStart } = useGameProvider();
+  const { setStatus } = useGameProvider();
 
   return (
     <>
@@ -14,7 +14,7 @@ export const WelcomeScreen = () => {
         type of questions, multiple choice, yes or no, and free text.
       </p>
       <div className="mt-10 flex items-center justify-center gap-x-6">
-        <Button onClick={() => setIsStart(true)}>START →</Button>
+        <Button onClick={() => setStatus("start")}>START →</Button>
       </div>
     </>
   );

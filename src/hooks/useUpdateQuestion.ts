@@ -1,16 +1,16 @@
 import { useCallback } from "react";
-import { useGameProvider } from "../providers/GameProvider/GameContext";
+import { useGameProvider } from "../providers/GameProvider";
 
-export const useUpdateQuestion: () => [string | undefined, (newAnswer: string) => void] = () => {
-  const { questions, currentQuestion, setQuestions } = useGameProvider();
+export const useUpdateQuestion: () => [string | undefined, (userAnswer: string) => void] = () => {
+  const { questions, currentIndex, setQuestions } = useGameProvider();
 
   const updateAnswer = useCallback(
-    (newAnswer: string) => {
-      questions[currentQuestion].userAnswer = newAnswer;
-      setQuestions({ ...questions });
+    (userAnswer: string) => {
+      questions[currentIndex] = { ...questions[currentIndex], userAnswer };
+      setQuestions([...questions]);
     },
-    [currentQuestion, questions, setQuestions],
+    [currentIndex, setQuestions],
   );
 
-  return [questions[currentQuestion].userAnswer, updateAnswer];
+  return [questions[currentIndex].userAnswer, updateAnswer];
 };

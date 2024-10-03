@@ -1,25 +1,38 @@
-import { Button } from "../atoms";
-import { useGameProvider } from "../providers/GameProvider/GameContext";
-import { Question } from "../types";
+import { useUpdateQuestion } from "../hooks/useUpdateQuestion";
+import { QuestionMultiple } from "../types";
+import { QuestionContainer } from "./QuestionContainer";
 
 type Props = {
-  question: Question;
+  question: QuestionMultiple;
 };
 
 export const MultipleQuestion = (props: Props) => {
-  const { currentQuestion, setCurrentQuestion } = useGameProvider();
+  const [value, setValue] = useUpdateQuestion();
+  const options = [...props.question.incorrect_answers, props.question.correct_answer];
 
   return (
-    <article>
-      <header className="absolute top-5 right-8">
-        <p className="text-white text-end rounded-full py-2 px-4 border-2 border-white">{currentQuestion + 1}</p>
-      </header>
-      <h1 className="mx-auto max-w-2xl text-2xl font-bold tracking-tight text-white sm:text-3xl">
-        {props.question.question}
-      </h1>
-      <div className="mt-10 flex items-center justify-center gap-x-6">
-        <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next →</Button>
-      </div>
-    </article>
+    <QuestionContainer question={props.question.question}>
+      <fieldset className="flex flex-col items-center">
+        <div className="space-y-6">
+          {options.map((option) => (
+            <div key={option} className="flex items-center">
+              <input
+                checked={value === option}
+                id={option}
+                name="notification-method"
+                type="radio"
+                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                onChange={() => {
+                  setValue(option);
+                }}
+              />
+              <label htmlFor={option} className="ml-3 block text-md font-medium leading-6 text-white">
+                {option}
+              </label>
+            </div>
+          ))}
+        </div>
+      </fieldset>
+    </QuestionContainer>
   );
 };

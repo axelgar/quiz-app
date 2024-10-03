@@ -1,40 +1,41 @@
 import { GameContext } from "./GameContext";
 import data from "../../questions.json";
-import { shuffleArray } from "../../utils/shuffle-array";
+import { shuffleArray } from "../../utils";
 import { ReactNode, useState } from "react";
+import { GameStatus } from "../../types";
 
 type Props = { children: ReactNode };
 
 export const GameProvider = (props: Props) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [questions, setQuestions] = useState(shuffleArray(data));
-  const [isStart, setIsStart] = useState(false);
-  const [isEnd, setIsEnd] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [questions, setQuestions] = useState(shuffleArray(data).slice(0, 5));
+  const [status, setStatus] = useState<GameStatus>("idle");
 
-  const onSetCurrentQuestions = (number: number) => {
-    if (currentQuestion >= questions.length - 1) {
+  const onSetCurrentIndex = (number: number) => {
+    if (currentIndex > questions.length - 1 || currentIndex < 0) {
       return;
     }
-    setCurrentQuestion(number);
+
+    setCurrentIndex(number);
+  };
+
+  const resetGame = () => {
+    setStatus("idle");
+    setCurrentIndex(0);
+    setQuestions([...shuffleArray(data).slice(0, 5)]);
   };
 
   return (
     <GameContext.Provider
       {...props}
       value={{
-        questionsPull: data,
         questions,
         setQuestions,
-        currentQuestion,
-        setCurrentQuestion: onSetCurrentQuestions,
-        isStart,
-        setIsStart,
-        isEnd,
-        setIsEnd,
-        resetGame: () => {
-          setIsEnd(false);
-          setQuestions(shuffleArray(data));
-        },
+        status,
+        setStatus,
+        currentIndex,
+        setCurrentIndex: onSetCurrentIndex,
+        resetGame,
       }}
     />
   );

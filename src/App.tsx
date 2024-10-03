@@ -1,16 +1,22 @@
-import { WelcomeScreen } from "./components/WelcomeScreen";
-import { useGameProvider } from "./providers/GameProvider/GameContext";
+import { Show } from "./atoms/Show";
+import { WelcomeScreen, EndScreen } from "./components";
+import { useGameProvider } from "./providers/GameProvider";
 import { getQuestionComponent } from "./utils/get-question-component";
 
 export default function App() {
-  const { isStart, isEnd, currentQuestion, questions } = useGameProvider();
+  const { status, currentIndex, questions } = useGameProvider();
 
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-          {!isStart && !isEnd && <WelcomeScreen />}
-          {isStart && !isEnd && getQuestionComponent(questions[currentQuestion])}
+    <div className="bg-white h-full">
+      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8 h-full">
+        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16 min-h-[600px] flex flex-col justify-between gap-4 h-full">
+          <Show when={status === "idle"}>
+            <WelcomeScreen />
+          </Show>
+          <Show when={status === "start"}>{getQuestionComponent(questions[currentIndex])}</Show>
+          <Show when={status === "end"}>
+            <EndScreen />
+          </Show>
           <svg
             viewBox="0 0 1024 1024"
             aria-hidden="true"
