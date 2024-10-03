@@ -31,10 +31,10 @@ export const EndScreen = () => {
 
       <div className="flex justify-center">
         <ul className="text-white mt-10 flex flex-col items-start">
-          <li>Correct: {correctAnswers}</li>
-          <li>Wrong: {wrongAnswers}</li>
-          <li>Questions answered: {answers}</li>
-          <li>Score: {score}%</li>
+          <li className="text-md">Correct: {correctAnswers}</li>
+          <li className="text-md">Wrong: {wrongAnswers}</li>
+          <li className="text-md">Questions answered: {answers}</li>
+          <li className="text-md">Score: {score}%</li>
         </ul>
       </div>
 
