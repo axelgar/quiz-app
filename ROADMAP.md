@@ -52,6 +52,11 @@
 - Create a hook to add a global event handler to manage basic actions
 - Focus trap?
 
+## Readme
+
+- Add scripts description
+- How to guide to run the project
+
 ## Tests
 
 - Vitest

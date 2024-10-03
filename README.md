@@ -32,6 +32,11 @@ For the styles I decided to go with Talwind since I am very used to it and it al
 - [Vitest](https://vitest.dev/)
 - [React Testing Library](https://testing-library.com/)
 
+## Code/structure standards used
+
+- Props destructuring always inside the component (when need it) and not in the params
+-
+
 ## Possible next steps
 
 - Show difficulty
@@ -40,4 +45,3 @@ For the styles I decided to go with Talwind since I am very used to it and it al
 - Add persistent state
 - Add ranking
 - Add confirmation modal if user is going to finish with not answered questions
-- Document code guidelines (prop destructuring, import order, use of arrow functions, etc.)
