@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { render, screen, fireEvent } from "../../tests/uitls";
+import { screen, setup } from "../../tests/uitls";
 import { TextQuestion } from "./TextQuestion";
 import { QuestionText } from "../../types";
 
@@ -13,16 +13,16 @@ const question: QuestionText = {
 
 describe("TextQuestion", () => {
   it("renders correclty", () => {
-    render(<TextQuestion question={question} />);
-    screen.debug();
+    setup(<TextQuestion question={question} />);
+
     expect(screen.getByLabelText("answer-0")).toBeInTheDocument();
   });
 
-  it("use can type an anwser", () => {
-    render(<TextQuestion question={question} />);
+  it("should be able to type an answer", async () => {
+    const { user } = setup(<TextQuestion question={question} />);
 
     const input = screen.getByLabelText("answer-0");
-    fireEvent.change(input, { target: { value: "foo" } });
+    await user.type(input, "foo");
 
     expect(screen.getByDisplayValue("foo")).toBeInTheDocument();
   });

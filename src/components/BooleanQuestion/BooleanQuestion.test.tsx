@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { render, screen, fireEvent } from "../../tests/uitls";
+import { setup, screen } from "../../tests/uitls";
 import { BooleanQuestion } from "./BooleanQuestion";
 import { QuestionBoolean } from "../../types";
 
@@ -14,14 +14,14 @@ const question: QuestionBoolean = {
 
 describe("BooleanQuestion", () => {
   it("renders correclty", () => {
-    render(<BooleanQuestion question={question} />);
+    setup(<BooleanQuestion question={question} />);
 
     expect(screen.getByRole("radiogroup")).toBeInTheDocument();
     expect(screen.getAllByRole("radio").length).toBe(2);
   });
 
-  it("user can select between the two options", () => {
-    render(<BooleanQuestion question={question} />);
+  it("should be able to select between the options", async () => {
+    const { user } = setup(<BooleanQuestion question={question} />);
 
     const firstRadioButton = screen.getAllByRole("radio")[0];
     const secondRadioButton = screen.getAllByRole("radio")[1];
@@ -29,11 +29,11 @@ describe("BooleanQuestion", () => {
     expect(firstRadioButton.ariaChecked).toBe("false");
     expect(secondRadioButton.ariaChecked).toBe("false");
 
-    fireEvent.click(firstRadioButton);
+    await user.click(firstRadioButton);
     expect(firstRadioButton.ariaChecked).toBe("true");
     expect(secondRadioButton.ariaChecked).toBe("false");
 
-    fireEvent.click(secondRadioButton);
+    await user.click(secondRadioButton);
     expect(firstRadioButton.ariaChecked).toBe("false");
     expect(secondRadioButton.ariaChecked).toBe("true");
   });
