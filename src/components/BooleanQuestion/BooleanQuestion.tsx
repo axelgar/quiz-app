@@ -1,10 +1,10 @@
 import { Radio, RadioGroup } from "@headlessui/react";
-import { useUpdateQuestion } from "../hooks";
-import { Question } from "../types";
-import { QuestionContainer } from "./QuestionContainer";
+import { useUpdateQuestion } from "../../hooks";
+import { QuestionBoolean } from "../../types";
+import { QuestionContainer } from "../QuestionContainer/QuestionContainer";
 
 type Props = {
-  question: Question;
+  question: QuestionBoolean;
 };
 
 const options = ["True", "False"];

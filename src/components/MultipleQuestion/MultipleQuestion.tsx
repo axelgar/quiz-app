@@ -1,6 +1,6 @@
-import { useFocusOnMount, useUpdateQuestion } from "../hooks";
-import { QuestionMultiple } from "../types";
-import { QuestionContainer } from "./QuestionContainer";
+import { useFocusOnMount, useUpdateQuestion } from "../../hooks";
+import { QuestionMultiple } from "../../types";
+import { QuestionContainer } from "../QuestionContainer/QuestionContainer";
 
 type Props = {
   question: QuestionMultiple;
@@ -22,12 +22,11 @@ export const MultipleQuestion = (props: Props) => {
               <input
                 checked={value === option}
                 id={option}
+                aria-checked={value === option}
                 name="notification-method"
                 type="radio"
                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                onChange={() => {
-                  setValue(option);
-                }}
+                onChange={() => setValue(option)}
               />
               <label
                 ref={index === 0 ? ref : undefined}

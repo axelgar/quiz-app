@@ -1,11 +1,11 @@
 import { ChangeEvent } from "react";
-import { useFocusOnMount, useUpdateQuestion } from "../hooks";
-import { useGameProvider } from "../providers";
-import { Question } from "../types";
-import { QuestionContainer } from "./QuestionContainer";
+import { useFocusOnMount, useUpdateQuestion } from "../../hooks";
+import { useGameProvider } from "../../providers";
+import { QuestionText } from "../../types";
+import { QuestionContainer } from "../QuestionContainer/QuestionContainer";
 
 type Props = {
-  question: Question;
+  question: QuestionText;
 };
 
 export const TextQuestion = (props: Props) => {
@@ -32,6 +32,7 @@ export const TextQuestion = (props: Props) => {
             ref={ref}
             id={`answer-${questionsIndex}`}
             name={`answer-${questionsIndex}`}
+            aria-label={`answer-${questionsIndex}`}
             placeholder="Batman"
             maxLength={100}
             value={value || ""}

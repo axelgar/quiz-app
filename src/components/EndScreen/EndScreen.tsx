@@ -1,6 +1,6 @@
-import { Button, KeyIcon } from "../atoms";
-import { useGameProvider } from "../providers";
-import { useFocusOnMount } from "../hooks";
+import { Button, KeyIcon } from "../../atoms";
+import { useGameProvider } from "../../providers";
+import { useFocusOnMount } from "../../hooks";
 
 export const EndScreen = () => {
   const { reset: resetGame, questions } = useGameProvider();

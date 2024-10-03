@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { useGameProvider } from "../providers";
+import { useGameProvider } from "../../providers";
 
 export const Pager = () => {
   const { questions, setQuestionsIndex, questionsIndex } = useGameProvider();

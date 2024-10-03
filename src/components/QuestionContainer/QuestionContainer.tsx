@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { useGameProvider } from "../providers";
-import { Button } from "../atoms";
-import { Pager } from "./Pager";
+import { useGameProvider } from "../../providers";
+import { Button } from "../../atoms";
+import { Pager } from "../Pager/Pager";
 
 type Props = {
   question: string;
