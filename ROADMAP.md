@@ -55,3 +55,8 @@
 ## State persistence
 
 - Local Storage?
+
+## Notes
+
+- Focus trap?
+- Key handlers
